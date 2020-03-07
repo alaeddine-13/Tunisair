@@ -19,9 +19,11 @@ Therefore, building the project consisted in different steps :
 
 ## Model Training :
 We used the dataset provided in the Nasa repository for the Turbofan engine (check it [here](https://ti.arc.nasa.gov/tech/dash/groups/pcoe/prognostic-data-repository/#turbofan)). The dataset comes with a research paper, describing the dataset and sensors data.
+
 [![N|Solid](https://alaeddineabdessalem.com/assets/img/projects/research_paper.png)](https://alaeddineabdessalem.com/assets/img/projects/research_paper.png)
 
 After training the model, accuracy was validated and plotted :
+
 [![N|Solid](https://alaeddineabdessalem.com/assets/img/projects/model_training_result.png)](https://alaeddineabdessalem.com/assets/img/projects/model_training_result.png)
 
 ## REST API :
@@ -31,7 +33,8 @@ The REST API provides several endpoints listed below :
 [![N|Solid](https://alaeddineabdessalem.com/assets/img/projects/aircraft_status_email.png)](https://alaeddineabdessalem.com/assets/img/projects/aircraft_status_email.png)
 This endpoint, is used by ingestion scripts to simulate aircrafts sending sensor data.
 3. `GET /api/aircraft` : This endpoint returns RUL datapoints for all aircrafts in database, to be shown in the main dashboard like so :
-4. [![N|Solid](https://alaeddineabdessalem.com/assets/img/projects/aircrafts_dashboard.png)](https://alaeddineabdessalem.com/assets/img/projects/aircrafts_dashboard.png)
+
+[![N|Solid](https://alaeddineabdessalem.com/assets/img/projects/aircrafts_dashboard.png)](https://alaeddineabdessalem.com/assets/img/projects/aircrafts_dashboard.png)
 5. `GET /api/flight/<int:day>/<int:month>/<int:year>` : This endpoint returns live data about flight in Tunis Carthage Airport. Data is scraped from the airport website in real-time and exposed in this endpoint.
 ## Frontend :
 The Frontend is built using AngularJS. The single page web application keeps consuming the webservice using crons, to keep real-time insights about aircrafts data and updated graphs.
@@ -40,7 +43,9 @@ The Frontend is built using AngularJS. The single page web application keeps con
 ## Data ingestion scripts :
 The script `flood_rul/flood_sousse.py` will get sample sensor data from the dataset and consume the REST API to send the data. Since the last sensor values corresponds to a deteriorated engine, the aircraft will enter an `in danger` status and an email will be sent.
 To use the script, first delete the `RUL` data points from the frontend :
+
 [![N|Solid](https://alaeddineabdessalem.com/assets/img/projects/clear_sousse.png)](https://alaeddineabdessalem.com/assets/img/projects/clear_sousse.png)
+
 Then run the script : 
 ```python
 python flood_rul/flood_sousse.py
@@ -50,7 +55,7 @@ python flood_rul/flood_sousse.py
 
 To develop such a project, here is the used tech stack:
 
-* [AngularJS] - HTML enhanced for web apps!
+* [AngularJS](https://angularjs.org) - HTML enhanced for web apps!
 * [Django](https://www.djangoproject.com) - python framework for the backend REST API
 * [Flask](https://palletsprojects.com/p/flask/) - python framework for the backend REST API
 * [Scikit-learn](https://scikit-learn.org) - we used the `GradientBoostingRegressor` from the scikit-learn library to train and deploy the Gradient Boosting model
